@@ -1,19 +1,14 @@
-var port = 4000;
+var port = 3090;
 var colors = require('@colors/colors');
 const WebSocket = require('ws')
 require('better-logging')(console);
 console.logLevel = 4;
 const uuid = require('uuid')
-colors.enable()
-colors.setTheme({
-  debug: `purple`,
-  notice: `yellow`
-})
 const blacklist_word = /hater|hate|hates/g
 const wss = new WebSocket.Server({ port: port })
 console.log('Host created on port: ' + port) 
 console.log("use /connect".blue, "127.0.0.1".green + ":" + `${port}`.brightBlue, "to connect".blue)
-console.warn("WARNING: MAKE SURE Websocket Encryption is disabled. Navigate Settings -> Profile -> Require Encrypted Websockets.".notice)
+console.warn("WARNING: MAKE SURE Websocket Encryption is disabled. Navigate Settings -> Profile -> Require Encrypted Websockets.")
 wss.on('connection', (socket, request) => {
   console.log(`An connection connected: ${request.socket.remoteAddress}:${request.socket.remotePort}`)
   function send(cmd) {
